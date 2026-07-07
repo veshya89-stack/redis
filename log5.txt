@@ -1,0 +1,13 @@
+[0;34mStreaming deployment logs for redis.apexweaveapp.com...[0m
+
+Docker 29.3.1 with BuildKit and Buildx detected on deployment server (docker-server1).
+Starting deployment of <REDACTED>:apex/redis.git:main to docker-server1.
+Preparing container with helper image: ghcr.io/apexweave/apexweave-helper:1.0.13
+----------------------------------------
+Importing <REDACTED>:apex/redis.git:main (commit sha ec1ae1761ef6b8a1da73845a01af5aa344766799) to /artifacts/r1m6vcxd35axu14p08ug4h3f.
+----------------------------------------
+Importing <REDACTED>:apex/redis.git:main (commit sha ec1ae1761ef6b8a1da73845a01af5aa344766799) to /artifacts/r1m6vcxd35axu14p08ug4h3f.
+Image not found (vrx2dzil9d7db179jbtrx6r6:ec1ae1761ef6b8a1da73845a01af5aa344766799). Building new image.
+----------------------------------------
+Building docker image started.
+To check the current progress, click on Show Debug Logs.
