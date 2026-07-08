@@ -6,6 +6,20 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExecutiveBriefController;
 use App\Http\Controllers\StrategicInitiativeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PenugasanController;
+use App\Http\Controllers\Auth\EdRetailLoginController;
+
+// Login khusus tim ED Retail
+Route::get('/penugasan/login', [EdRetailLoginController::class, 'showLoginForm'])->name('penugasan.login');
+Route::post('/penugasan/login', [EdRetailLoginController::class, 'login'])->name('penugasan.login.submit');
+Route::post('/penugasan/logout', [EdRetailLoginController::class, 'logout'])->name('penugasan.logout');
+
+// Modul Penugasan ED Retail — dilindungi middleware auth
+Route::middleware('auth')->group(function () {
+    Route::resource('penugasan', PenugasanController::class);
+    Route::post('/penugasan/{penugasan}/tindak-lanjut', [PenugasanController::class, 'storeTindakLanjut'])
+        ->name('penugasan.tindak-lanjut.store');
+});
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
