@@ -265,41 +265,37 @@
 
 <body>
 
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="menu">
 
-<div class="sidebar" id="sidebar">
+    <a href="{{ route('dashboard') }}"
+       class="{{ request()->routeIs('dashboard') ? 'active-menu' : '' }}">
+        <i class="bi bi-grid"></i>
+        Dashboard
+    </a>
 
-    <div class="logo">
-        <span>R</span>EDIS
-    </div>
+    <a href="{{ route('strategic-initiative.index') }}"
+       class="{{ request()->routeIs('strategic-initiative.*', 'action-plan.*') ? 'active-menu' : '' }}">
+        <i class="bi bi-bullseye"></i>
+        Strategic Initiative
+    </a>
 
-    <div class="subtitle">
-        Retail Executive Decision Information System
-    </div>
+    <a href="{{ route('penugasan.index') }}"
+       class="{{ request()->routeIs('penugasan.*') ? 'active-menu' : '' }}">
+        <i class="bi bi-kanban"></i>
+        Penugasan
+    </a>
 
-    <div class="menu">
+    <a href="{{ route('executive-brief.index') }}"
+       class="{{ request()->routeIs('executive-brief.*') ? 'active-menu' : '' }}">
+        <i class="bi bi-file-earmark-text"></i>
+        Executive Brief
+    </a>
 
-        <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active-menu' : '' }}">
-            <i class="bi bi-grid"></i>
-            Dashboard
-        </a>
-
-        <a href="{{ route('strategic-initiative.index') }}" class="{{ request()->routeIs('strategic-initiative.*', 'action-plan.*') ? 'active-menu' : '' }}">
-            <i class="bi bi-bullseye"></i>
-            Strategic Initiative
-        </a>
-
-        <a href="{{ route('executive-brief.index') }}" class="{{ request()->routeIs('executive-brief.*') ? 'active-menu' : '' }}">
-            <i class="bi bi-file-earmark-text"></i>
-            Executive Brief
-        </a>
-
-        <a href="{{ route('administration.index') }}" class="{{ request()->routeIs('administration.*') ? 'active-menu' : '' }}">
-            <i class="bi bi-gear"></i>
-            Administration
-        </a>
-
-    </div>
+    <a href="{{ route('administration.index') }}"
+       class="{{ request()->routeIs('administration.*') ? 'active-menu' : '' }}">
+        <i class="bi bi-gear"></i>
+        Administration
+    </a>
 
 </div>
 
