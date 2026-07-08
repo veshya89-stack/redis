@@ -23,7 +23,11 @@
             background:#082A5E;
             min-height:100vh;
             position:fixed;
+            top:0;
+            left:0;
             color:white;
+            z-index:1050;
+            transition:transform .3s ease;
         }
 
         .logo{
@@ -67,6 +71,7 @@
 
         .content{
             margin-left:290px;
+            transition:margin-left .3s ease;
         }
 
         .topbar{
@@ -77,11 +82,38 @@
             justify-content:space-between;
             align-items:center;
             padding:0 35px;
+            position:sticky;
+            top:0;
+            z-index:900;
+        }
+
+        .topbar-left{
+            display:flex;
+            align-items:center;
+            gap:18px;
+        }
+
+        .menu-toggle{
+            display:none;
+            background:none;
+            border:none;
+            font-size:26px;
+            color:#082A5E;
+            cursor:pointer;
+            padding:4px 6px;
         }
 
         .page-title{
             font-size:30px;
             font-weight:700;
+        }
+
+        .sidebar-overlay{
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(8,42,94,.45);
+            z-index:1040;
         }
 
         .main-content{
@@ -173,13 +205,69 @@
             font-size:.9rem;
         }
 
+        /* ===== Responsive: tablet & mobile ===== */
+        @media (max-width: 768px){
+
+            body{
+                font-size:15px;
+            }
+
+            .sidebar{
+                transform:translateX(-100%);
+            }
+
+            .sidebar.sidebar-open{
+                transform:translateX(0);
+            }
+
+            .sidebar-overlay.overlay-visible{
+                display:block;
+            }
+
+            .content{
+                margin-left:0;
+            }
+
+            .menu-toggle{
+                display:inline-block;
+            }
+
+            .topbar{
+                height:64px;
+                padding:0 16px;
+            }
+
+            .page-title{
+                font-size:20px;
+            }
+
+            .main-content{
+                padding:20px 16px;
+            }
+
+            .card-body{
+                padding:1.1rem 1.2rem;
+            }
+
+            /* stack card grids on mobile */
+            .row > [class*="col-"]{
+                margin-bottom:14px;
+            }
+
+            .table-responsive{
+                border-radius:10px;
+            }
+        }
+
     </style>
 
 </head>
 
 <body>
 
-<div class="sidebar">
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="sidebar" id="sidebar">
 
     <div class="logo">
         <span>R</span>EDIS
@@ -215,13 +303,21 @@
 
 </div>
 
-<div class="content">
+<div class="content" id="content">
 
     <div class="topbar">
 
-        <div class="page-title">
+        <div class="topbar-left">
 
-            @yield('title')
+            <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="page-title">
+
+                @yield('title')
+
+            </div>
 
         </div>
 
@@ -246,6 +342,41 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('menuToggle');
+
+    function openSidebar(){
+        sidebar.classList.add('sidebar-open');
+        overlay.classList.add('overlay-visible');
+    }
+
+    function closeSidebar(){
+        sidebar.classList.remove('sidebar-open');
+        overlay.classList.remove('overlay-visible');
+    }
+
+    toggleBtn.addEventListener('click', function(){
+        if(sidebar.classList.contains('sidebar-open')){
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    // Tutup sidebar otomatis kalau menu diklik (mobile)
+    document.querySelectorAll('.menu a').forEach(function(link){
+        link.addEventListener('click', function(){
+            if(window.innerWidth <= 768){
+                closeSidebar();
+            }
+        });
+    });
+</script>
 
 </body>
 
