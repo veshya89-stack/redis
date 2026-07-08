@@ -288,6 +288,11 @@
             <i class="bi bi-bullseye"></i>
             Strategic Initiative
         </a>
+        <a href="{{ route('penugasan.index') }}"
+   class="{{ request()->routeIs('penugasan.*') ? 'active-menu' : '' }}">
+    <i class="bi bi-list-check"></i>
+    Penugasan
+</a>
 
         <a href="{{ route('executive-brief.index') }}" class="{{ request()->routeIs('executive-brief.*') ? 'active-menu' : '' }}">
             <i class="bi bi-file-earmark-text"></i>
