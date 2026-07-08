@@ -19,6 +19,13 @@ Route::post('/penugasan/login', [EdRetailLoginController::class, 'login'])
 Route::post('/penugasan/logout', [EdRetailLoginController::class, 'logout'])
     ->name('penugasan.logout');
 
+Route::resource('penugasan', PenugasanController::class);
+
+Route::post(
+    '/penugasan/{penugasan}/tindak-lanjut',
+    [PenugasanController::class, 'storeTindakLanjut']
+)->name('penugasan.tindak-lanjut.store');
+
 // Tambahkan ini
 Route::get('/login', function () {
     return redirect()->route('penugasan.login');
