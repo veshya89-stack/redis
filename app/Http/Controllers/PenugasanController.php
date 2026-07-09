@@ -48,7 +48,7 @@ class PenugasanController extends Controller
 
     public function show(Penugasan $penugasan)
     {
-        $divisions = Division::orderBy('name')->get();
+        $divisions = Division::orderBy('nama')->get();
         $penugasan->load('tindakLanjut.division');
 
         return view('penugasan.show', compact('penugasan', 'divisions'));

@@ -85,7 +85,7 @@
                                 <option value="">-- Pilih Divisi --</option>
                                 @foreach($divisions as $division)
                                     <option value="{{ $division->id }}" {{ old('division_id') == $division->id ? 'selected' : '' }}>
-                                        {{ $division->name }}
+                                        {{ $division->nama }}
                                     </option>
                                 @endforeach
                             </select>
@@ -115,7 +115,7 @@
                     @forelse($penugasan->tindakLanjut as $tl)
                         <div class="border-bottom pb-3 mb-3">
                             <div class="d-flex justify-content-between">
-                                <span class="fw-semibold">{{ $tl->division->name }}</span>
+                                <span class="fw-semibold">{{ $tl->division->nama }}</span>
                                 <span class="text-muted small">{{ $tl->tanggal->format('d M Y') }}</span>
                             </div>
                             <p class="mb-1">{{ $tl->deskripsi }}</p>
