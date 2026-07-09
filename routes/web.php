@@ -19,17 +19,20 @@ Route::post('/penugasan/login', [EdRetailLoginController::class, 'login'])
 Route::post('/penugasan/logout', [EdRetailLoginController::class, 'logout'])
     ->name('penugasan.logout');
 
-Route::resource('penugasan', PenugasanController::class);
-
-Route::post(
-    '/penugasan/{penugasan}/tindak-lanjut',
-    [PenugasanController::class, 'storeTindakLanjut']
-)->name('penugasan.tindak-lanjut.store');
-
-// Tambahkan ini
+// Redirect default Laravel "login" ke halaman login ED Retail
 Route::get('/login', function () {
     return redirect()->route('penugasan.login');
 })->name('login');
+
+// Modul Penugasan ED Retail — WAJIB login untuk akses ini
+Route::middleware('auth')->group(function () {
+    Route::resource('penugasan', PenugasanController::class);
+
+    Route::post(
+        '/penugasan/{penugasan}/tindak-lanjut',
+        [PenugasanController::class, 'storeTindakLanjut']
+    )->name('penugasan.tindak-lanjut.store');
+});
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
