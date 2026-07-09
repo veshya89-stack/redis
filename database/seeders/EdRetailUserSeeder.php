@@ -16,11 +16,11 @@ class EdRetailUserSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'edretail@pln.co.id'],
-            [
-                'name'     => 'Tim ED Retail',
-                'password' => Hash::make('GANTI_PASSWORD_INI'),
-            ]
-        );
+    ['email' => 'edretail.pln@gmail.com'],
+    [
+        'name'     => 'Tim ED Retail',
+        'password' => Hash::make('EdRetail2026!'),
+    ]
+);
     }
 }
